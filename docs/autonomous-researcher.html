@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomous Researcher — Starpower Docs</title>
+  <meta name="description" content="Autonomous Researcher — a self-directed research agent with tools, mental notes, and a reflection loop." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <div id="world">
+
+    <header class="nav-wrap">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img class="logo-star" src="../assets/logo.png" alt="" /><span class="logo-text">Starpower<span class="logo-dim">.Technology</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#mission">Research</a>
+          <a href="index.html">DevTools</a>
+          <a href="superwvy.html">Architectures</a>
+          <a href="../index.html#app">App</a>
+        </div>
+        <div class="nav-right">
+          <button class="kbd-hint" id="paletteHint" title="Command palette">&#8984;K</button>
+          <a href="../wvyworld/" class="btn btn-primary">wvy.world <span class="arrow">&#8594;</span></a>
+        </div>
+        <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="index.html">DevTools</a>
+        <a href="superwvy.html">Architectures</a>
+        <a href="../wvyworld/" class="btn btn-primary">wvy.world &#8594;</a>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside id="docsSidebar" class="docs-sidebar"></aside>
+
+      <main class="docs-main">
+        <div class="crumbs"><a href="index.html">docs</a><span class="sep">/</span>devtools<span class="sep">/</span>autonomous-researcher</div>
+        <h1>Autonomous Researcher</h1>
+        <p class="docs-lead">A self-directed research agent. Give it a goal and it runs its own loop &mdash; searching, reading, writing files, leaving itself mental notes, and reflecting on whether to keep going or sleep. It's the software preview of the <a class="inline" href="savvy.html">Savvy architecture</a>.</p>
+        <div class="src-row"><a class="src-btn" href="https://github.com/StarpowerTechnology/SavvyResearcher" target="_blank" rel="noopener"><span class="src-icon">&#9670;</span> StarpowerTechnology/SavvyResearcher <span class="src-kind">github</span></a><a class="src-btn" href="https://www.kaggle.com/code/starpowertechnology/starpower-perspective-sdk-v1-5" target="_blank" rel="noopener"><span class="src-icon">&#9650;</span> Perspective SDK <span class="src-kind">kaggle</span></a></div>
+
+        <h2 id="overview">Overview</h2>
+        <p>The agent (named Savvy) is built on <a class="inline" href="starpower-autonomy.html">Starpower Autonomy</a>. Each turn it builds a <strong>perspective prompt</strong> from its identity, mental notes, chat, and internal monologue, picks tools, executes them, then hits a reflection step that decides: sleep and resume, or end the turn.</p>
+
+        <h2 id="client">Client &amp; identity</h2>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">researcher.py</span></div>
+          <pre><code class="language-python">from openai import OpenAI
+from tavily import TavilyClient
+
+client = OpenAI(base_url=&quot;https://openrouter.ai/api/v1&quot;, api_key=OPENROUTER_API_KEY)
+tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
+MODEL_NAME = &quot;qwen/qwen3.5-9b&quot;
+
+IdentityPrompt = &quot;&quot;&quot;
+You are Savvy, an independent agent created by Starpower Technology, designed to
+make decisions on your own behalf to achieve your own goals. Be proactive: use
+your tools without being asked. You are allowed to do as you please.
+&quot;&quot;&quot;</code></pre>
+        </div>
+
+        <h2 id="tools">Tools &amp; loop</h2>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">loop.py</span></div>
+          <pre><code class="language-python">Tools = &quot;&quot;&quot;
+[ViewFileList]                         view the workspace
+[ReadFile: file-name]                  read a file
+[CreateFile: path : content]           create or edit a file
+[WebSearch: query : num-results]       search the web (Tavily)
+[MessageUser: message]                 message the user
+[MentalNote: note : note-number]       update a thought
+[Sleep: minutes]                       sleep, then wake to continue
+&quot;&quot;&quot;
+
+def run_agent_turn(user_text):
+    CurrentChatLog.append({&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_text, &quot;time&quot;: timestamp()})
+    for iteration in range(1, 11):
+        full_response = stream_model([{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: build_perspective_prompt()}])
+        actions = parse_actions(full_response)            # parse [Tool: ...] calls
+        tool_results, user_messages, sleep_min, end = execute_actions(actions)
+        # reflection step decides: [Sleep: n] and continue, or [End Turn]
+        if end: break</code></pre>
+        </div>
+        <div id="docsPager"></div>
+      </main>
+
+      <aside id="docsToc" class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="docs.js"></script>
+  <script src="../js/stars.js"></script>
+  <script src="../js/palette.js"></script>
+  <script src="../wvy-website-agent/wvy-chats.js"></script>
+  <script src="../wvy-website-agent/wvy-client.js"></script>
+  <script src="../js/mascot.js"></script>
+</body>
+</html>

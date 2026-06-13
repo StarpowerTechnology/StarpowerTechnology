@@ -1,0 +1,11 @@
+{
+  "name": "wvy-website-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WVY website assistant for Starpower.Technology — Node server, Z.ai (GLM) client, and browser-side chat persistence.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

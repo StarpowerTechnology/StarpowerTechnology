@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WVY Custom Models — Starpower Docs</title>
+  <meta name="description" content="WVY Custom Models — small efficient reasoning models trained with polished datasets, multi-agent data, and expert thinking patterns." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <div id="world">
+
+    <header class="nav-wrap">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img class="logo-star" src="../assets/logo.png" alt="" /><span class="logo-text">Starpower<span class="logo-dim">.Technology</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#mission">Research</a>
+          <a href="index.html">DevTools</a>
+          <a href="superwvy.html">Architectures</a>
+          <a href="../index.html#app">App</a>
+        </div>
+        <div class="nav-right">
+          <button class="kbd-hint" id="paletteHint" title="Command palette">⌘K</button>
+          <a href="../wvyworld/" class="btn btn-primary">wvy.world <span class="arrow">→</span></a>
+        </div>
+        <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="index.html">DevTools</a>
+        <a href="superwvy.html">Architectures</a>
+        <a href="../wvyworld/" class="btn btn-primary">wvy.world →</a>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside id="docsSidebar" class="docs-sidebar"></aside>
+
+      <main class="docs-main">
+        <div class="crumbs"><a href="index.html">docs</a><span class="sep">/</span>architectures<span class="sep">/</span>wvy-custom-models</div>
+        <h1>WVY Custom Models</h1>
+        <p class="docs-lead">Custom models on proven open architectures — Qwen and GLM — tuned for what we care about: multi-agent collaboration, expert reasoning, and efficient information use. The point is not only more parameters. The point is better data, better training signals, and more reasoning per parameter.</p>
+        <div class="doc-badges">
+          <span class="doc-badge green">● ACTIVE</span>
+          <span class="doc-badge">4B – 100B PARAMS</span>
+        </div>
+
+        <h2 id="lineup">The lineup</h2>
+        <table class="docs-table">
+          <thead><tr><th>Base</th><th>Size</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>qwen-4b</code></td><td>4B</td><td>Fast small-model experiments for precise instruction following and room behavior.</td></tr>
+            <tr><td><code>qwen-9b</code></td><td>9B</td><td>The working middle ground for multi-agent collaboration and reasoning headroom.</td></tr>
+            <tr><td><code>qwen-32b</code></td><td>32B</td><td>Complex reasoning runs with expert-built datasets and richer context use.</td></tr>
+            <tr><td><code>glm-4.7-flash</code></td><td>—</td><td>Low-latency experiments for real-time collaboration rooms.</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="philosophy">Start low, punch up</h2>
+        <p>We're a new company and we train like one: <strong>4B–100B parameters, starting at the bottom.</strong> Every run teaches us something we carry up the scale. The goal is not the biggest model. The goal is the most useful model per parameter: cleaner datasets, less noise, better reasoning traces, multi-perspective interaction from <a class="inline" href="../wvyworld/">wvy.world</a>, and expert thinking patterns from the <a class="inline" href="savvy.html">Savvy</a> dataset work.</p>
+
+        <h2 id="method">Training direction</h2>
+        <p>WVY training is aimed at models that can use information to solve problems. Instead of rewarding only immediate answer prediction, we care about reading the available context, organizing it, checking assumptions, and producing a grounded result. That is why the small-model path matters: with a cleaner dataset and sharper training loop, a smaller model can become more reliable for the specific reasoning work we care about.</p>
+
+        <h2 id="usage">Using the models</h2>
+        <p>Implementation notes and usage examples will land here as the public releases are prepared.</p>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">training-notes.py</span></div>
+          <pre><code class="language-python"># WVY Custom Models
+# small efficient reasoning models
+# polished datasets
+# multi-agent collaboration traces</code></pre>
+        </div>
+        <div id="docsPager"></div>
+      </main>
+
+      <aside id="docsToc" class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="docs.js"></script>
+  <script src="../js/stars.js"></script>
+  <script src="../js/palette.js"></script>
+  <script src="../wvy-website-agent/wvy-chats.js"></script>
+  <script src="../wvy-website-agent/wvy-client.js"></script>
+  <script src="../js/mascot.js"></script>
+</body>
+</html>

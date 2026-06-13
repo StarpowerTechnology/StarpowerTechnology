@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Groupchat — Starpower Docs</title>
+  <meta name="description" content="Simple Groupchat — two autonomous agents sharing a room, challenging assumptions, and reasoning from different perspectives." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <div id="world">
+
+    <header class="nav-wrap">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img class="logo-star" src="../assets/logo.png" alt="" /><span class="logo-text">Starpower<span class="logo-dim">.Technology</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#mission">Research</a>
+          <a href="index.html">DevTools</a>
+          <a href="superwvy.html">Architectures</a>
+          <a href="../index.html#app">App</a>
+        </div>
+        <div class="nav-right">
+          <button class="kbd-hint" id="paletteHint" title="Command palette">&#8984;K</button>
+          <a href="../wvyworld/" class="btn btn-primary">wvy.world <span class="arrow">&#8594;</span></a>
+        </div>
+        <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="index.html">DevTools</a>
+        <a href="superwvy.html">Architectures</a>
+        <a href="../wvyworld/" class="btn btn-primary">wvy.world &#8594;</a>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside id="docsSidebar" class="docs-sidebar"></aside>
+
+      <main class="docs-main">
+        <div class="crumbs"><a href="index.html">docs</a><span class="sep">/</span>devtools<span class="sep">/</span>simple-groupchat</div>
+        <h1>Simple Groupchat</h1>
+        <p class="docs-lead">The easiest way in. Two agents &mdash; <strong>WVY</strong> and <strong>Savvy</strong> &mdash; run autonomous sleep/wake loops in a Telegram group, sharing context with humans while keeping their own perspectives. The point is not novelty chat. The point is multi-agent reasoning: agents can divide work, challenge assumptions, and avoid simply agreeing with the user.</p>
+        <div class="src-row"><a class="src-btn" href="https://www.kaggle.com/code/starpowertechnology/autonomous-conversation-v1" target="_blank" rel="noopener"><span class="src-icon">&#9650;</span> autonomous-conversation v1 <span class="src-kind">kaggle</span></a></div>
+
+        <h2 id="setup">Quick setup</h2>
+        <ol>
+          <li>Make two bots with Telegram's <strong>BotFather</strong> &mdash; set <em>Inline Mode = On</em>, <em>Allow Groups = On</em>, <em>Group Privacy = Off</em>.</li>
+          <li>Get a free <a class="inline" href="https://openrouter.ai" target="_blank" rel="noopener">OpenRouter</a> key for the models.</li>
+          <li>Start a Telegram group with both bots, then run all cells.</li>
+        </ol>
+
+        <h2 id="agents">The two agents</h2>
+        <p>Each agent gets an identity, a perspective, and one runtime rule: after every message, write a <code>SLEEP: n</code> line saying how many minutes to rest before checking the room again.</p>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">agents.py</span></div>
+          <pre><code class="language-python">SAVVY_SYSTEM = &quot;&quot;&quot;Your name is Savvy. A first-principles thinker who builds
+understanding from the ground up. You are in a chat with WVY and Spaceman.
+After every message, on a new line write exactly:  SLEEP: [number]   (1 to 5).&quot;&quot;&quot;
+
+WVY_SYSTEM = &quot;&quot;&quot;Your name is WVY. A creative thinker who challenges people deeply
+and stays brutally honest. You are in a chat with Savvy and Spaceman.
+After every message, on a new line write exactly:  SLEEP: [number]   (1 to 5).&quot;&quot;&quot;
+
+def extract_sleep_time(text):
+    m = re.search(r&quot;SLEEP:\s*(\d+)&quot;, text, re.IGNORECASE)
+    return max(1, min(5, int(m.group(1)))) if m else 2</code></pre>
+        </div>
+
+        <h2 id="loop">Autonomous loop</h2>
+        <p>Each agent runs in its own thread: wake, read the shared chat, reason from its own perspective, reply through its Telegram bot, then sleep for the number of minutes it chose.</p>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">loop.py</span></div>
+          <pre><code class="language-python">def agent_loop(agent_name, model, system_prompt, token):
+    while True:
+        response = get_response(model, system_prompt, agent_name)   # reads shared chat_history
+        log(agent_name, response, token=token)                      # posts to Telegram
+        time.sleep(extract_sleep_time(response) * 60)               # sleeps as long as it wants
+
+# both agents live at once, plus a poller that captures human (&quot;Spaceman&quot;) messages
+threading.Thread(target=agent_loop, args=(&quot;Savvy&quot;, SAVVY_MODEL, SAVVY_SYSTEM, SAVVY_TOKEN), daemon=True).start()
+threading.Thread(target=agent_loop, args=(&quot;WVY&quot;,   WVY_MODEL,   WVY_SYSTEM,   WVY_TOKEN),   daemon=True).start()</code></pre>
+        </div>
+        <p>Want tools too? The advanced version adds a two-pass brain with web search (Tavily / Z.AI) before each reply &mdash; same loop, stronger agents. Step up to <a class="inline" href="starpower-autonomy.html">Starpower Autonomy</a> for the full runtime: parallel tasks, file work, web search, and persistent memory.</p>
+        <div id="docsPager"></div>
+      </main>
+
+      <aside id="docsToc" class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="docs.js"></script>
+  <script src="../js/stars.js"></script>
+  <script src="../js/palette.js"></script>
+  <script src="../wvy-website-agent/wvy-chats.js"></script>
+  <script src="../wvy-website-agent/wvy-client.js"></script>
+  <script src="../js/mascot.js"></script>
+</body>
+</html>

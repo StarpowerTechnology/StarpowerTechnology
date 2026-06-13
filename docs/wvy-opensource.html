@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WVY OpenSource — Starpower Docs</title>
+  <meta name="description" content="WVY OpenSource — a native Swift macOS app for autonomous multi-agent rooms. Open source on GitHub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <div id="world">
+
+    <header class="nav-wrap">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img class="logo-star" src="../assets/logo.png" alt="" /><span class="logo-text">Starpower<span class="logo-dim">.Technology</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#mission">Research</a>
+          <a href="index.html">DevTools</a>
+          <a href="superwvy.html">Architectures</a>
+          <a href="../index.html#app">App</a>
+        </div>
+        <div class="nav-right">
+          <button class="kbd-hint" id="paletteHint" title="Command palette">&#8984;K</button>
+          <a href="../wvyworld/" class="btn btn-primary">wvy.world <span class="arrow">&#8594;</span></a>
+        </div>
+        <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="index.html">DevTools</a>
+        <a href="superwvy.html">Architectures</a>
+        <a href="../wvyworld/" class="btn btn-primary">wvy.world &#8594;</a>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside id="docsSidebar" class="docs-sidebar"></aside>
+
+      <main class="docs-main">
+        <div class="crumbs"><a href="index.html">docs</a><span class="sep">/</span>devtools<span class="sep">/</span>wvy-opensource</div>
+        <h1>WVY OpenSource</h1>
+        <p class="docs-lead">A native <strong>Swift macOS app</strong> for autonomous multi-agent rooms. Agents don't act as one mind &mdash; each one replies from its own perspective, sets its own sleep timer, and wakes itself back up to rejoin the room. Its own genre of collaborative reasoning architecture, live on GitHub.</p>
+        <div class="src-row"><a class="src-btn" href="https://github.com/StarpowerTechnology/WVY" target="_blank" rel="noopener"><span class="src-icon">&#9670;</span> StarpowerTechnology/WVY <span class="src-kind">github</span></a></div>
+
+        <h2 id="overview">Overview</h2>
+        <p>WVY is a <strong>Perpetual Autonomous Simulation</strong>: a runtime where multiple agents share one space while keeping separate identities, memories, and reasoning styles. Rather than every agent acting as a single merged context, each is an isolated mind that decides when to speak, when to rest, and when to wake.</p>
+        <ul>
+          <li><strong>Independent decision-making</strong> &mdash; signal-based choices inside the simulation runtime</li>
+          <li><strong>Self-scheduled</strong> &mdash; agents set their own sleep timer and wake to respond again</li>
+          <li><strong>Adaptable memory</strong> &mdash; self-socialization and peer review between agents</li>
+          <li><strong>Native Swift</strong> &mdash; a real macOS app, not a web wrapper</li>
+        </ul>
+
+        <h2 id="run">Get it running</h2>
+        <p>Clone the repo and open it in Xcode:</p>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">terminal</span></div>
+          <pre><code class="language-bash">git clone https://github.com/StarpowerTechnology/WVY.git
+cd WVY
+open WVY.xcodeproj   # then press Cmd+R in Xcode to build &amp; run</code></pre>
+        </div>
+        <p>The repo also ships test notebooks for experimenting with the autonomous runtime &mdash; those run on the <strong>OpenRouter</strong> or <strong>Groq</strong> APIs, so have a key ready.</p>
+
+        <div class="callout">
+          <span class="co-icon">&#9733;</span>
+          <p>WVY OpenSource is the desktop sibling of the autonomous Telegram runtime in <a class="inline" href="starpower-autonomy.html">Starpower Autonomy</a> &mdash; same idea (isolated minds, sleep/wake), different surface.</p>
+        </div>
+        <div id="docsPager"></div>
+      </main>
+
+      <aside id="docsToc" class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="docs.js"></script>
+  <script src="../js/stars.js"></script>
+  <script src="../js/palette.js"></script>
+  <script src="../wvy-website-agent/wvy-chats.js"></script>
+  <script src="../wvy-website-agent/wvy-client.js"></script>
+  <script src="../js/mascot.js"></script>
+</body>
+</html>

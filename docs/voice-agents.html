@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Agents — Starpower Docs</title>
+  <meta name="description" content="Voice Agents — hands-free voice agent orchestration: talk to a voice model wired to backend agents that search and write." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <div id="world">
+
+    <header class="nav-wrap">
+      <nav class="nav">
+        <a href="../index.html" class="logo">
+          <img class="logo-star" src="../assets/logo.png" alt="" /><span class="logo-text">Starpower<span class="logo-dim">.Technology</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html#mission">Research</a>
+          <a href="index.html">DevTools</a>
+          <a href="superwvy.html">Architectures</a>
+          <a href="../index.html#app">App</a>
+        </div>
+        <div class="nav-right">
+          <button class="kbd-hint" id="paletteHint" title="Command palette">&#8984;K</button>
+          <a href="../wvyworld/" class="btn btn-primary">wvy.world <span class="arrow">&#8594;</span></a>
+        </div>
+        <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">Home</a>
+        <a href="index.html">DevTools</a>
+        <a href="superwvy.html">Architectures</a>
+        <a href="../wvyworld/" class="btn btn-primary">wvy.world &#8594;</a>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside id="docsSidebar" class="docs-sidebar"></aside>
+
+      <main class="docs-main">
+        <div class="crumbs"><a href="index.html">docs</a><span class="sep">/</span>devtools<span class="sep">/</span>voice-agents</div>
+        <h1>Voice Agents</h1>
+        <p class="docs-lead">Hands-free agent orchestration. A voice model up front, backend agents behind it &mdash; you talk, and the system searches the web, writes documents, and reads results back to you through <strong>hands-free UI popups</strong>. No typing, no clicking.</p>
+        <div class="src-row"><a class="src-btn" href="https://github.com/StarpowerTechnology/Voice-Agents" target="_blank" rel="noopener"><span class="src-icon">&#9670;</span> StarpowerTechnology/Voice-Agents <span class="src-kind">github</span></a></div>
+        <div class="doc-badges"><span class="doc-badge">TYPESCRIPT</span><span class="doc-badge">REACT &middot; VITE</span></div>
+
+        <h2 id="overview">Overview</h2>
+        <p>Voice Agents is a demo of a different UX: a real-time <strong>voice mode</strong> that orchestrates backend agents without manual input. It shows what's possible for web search, file management, and an interactive reading loop &mdash; all driven by talking.</p>
+        <ul>
+          <li><strong>Hands-free popups</strong> &mdash; the UI surfaces what agents are doing as you speak</li>
+          <li><strong>Backend agents</strong> &mdash; document writing and web search behind the voice layer</li>
+          <li><strong>Real-time voice</strong> &mdash; seamless conversation between voice model and agents</li>
+        </ul>
+
+        <h2 id="run">Get it running</h2>
+        <div class="code-block">
+          <div class="code-block-bar"><span class="cb-file">terminal</span></div>
+          <pre><code class="language-bash">git clone https://github.com/StarpowerTechnology/Voice-Agents.git
+cd Voice-Agents
+npm install
+npm run dev      # Vite dev server</code></pre>
+        </div>
+
+        <div class="callout">
+          <span class="co-icon">&#9733;</span>
+          <p>This is a demonstration of the interactive reading loop &mdash; expect rough edges. Wire your own voice + agent API keys in before running.</p>
+        </div>
+        <div id="docsPager"></div>
+      </main>
+
+      <aside id="docsToc" class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="docs.js"></script>
+  <script src="../js/stars.js"></script>
+  <script src="../js/palette.js"></script>
+  <script src="../wvy-website-agent/wvy-chats.js"></script>
+  <script src="../wvy-website-agent/wvy-client.js"></script>
+  <script src="../js/mascot.js"></script>
+</body>
+</html>
