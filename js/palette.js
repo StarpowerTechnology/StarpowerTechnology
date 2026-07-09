@@ -10,6 +10,8 @@
 
   const COMMANDS = [
     { label: "wvy.world", kind: "page", icon: "◆", action: () => location.href = root + "wvyworld/" },
+    { label: "WVY 1.7 1.5M on Kaggle", kind: "model", icon: "★", action: () => location.href = "https://www.kaggle.com/code/starpowertechnology/wvy-1-7-1-5m/edit" },
+    { label: "BbyWVY 360M on Hugging Face", kind: "model", icon: "★", action: () => location.href = "https://huggingface.co/StarpowerTechnology/BbyWVY-360m" },
     { label: "Starpower Studio — dataset builder", kind: "page", icon: "◆", action: () => location.href = "/studio" },
     { label: "Home", kind: "page", icon: "★", action: () => location.href = root + "index.html" },
     { label: "Docs — Introduction", kind: "docs", icon: "▸", action: () => location.href = root + "docs/index.html" },
