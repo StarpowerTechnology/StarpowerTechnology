@@ -4,7 +4,7 @@
 
   // ---------- hero subtitle: streams in like model output ----------
   const heroSub = document.getElementById("heroSub");
-  const HERO_TEXT = "Creating language models for fully independent agentic capabilities to achieve goals without a direct human supervisor. We develop teams for multi perspective tasks/conversations, build autonomous frameworks, and design new symbolic/neural architectures. WVY is our model. wvy.world is where it lives.";
+  const HERO_TEXT = "Creating language models for fully independent agentic capabilities to achieve goals without a direct human supervisor. We develop teams for multi perspective tasks/conversations, build autonomous frameworks, and design new symbolic/neural architectures. WVY 1.7 1.5M is on Kaggle. BbyWVY 360M is on Hugging Face. wvy.world is where WVY lives.";
   if (heroSub) {
     let i = 0;
     (function type() {
