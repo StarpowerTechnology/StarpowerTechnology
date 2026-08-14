@@ -1,390 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starpower.Technology — Building WVY</title>
-  <meta name="description" content="Starpower Technology trains small reasoning-focused models, builds multi-agent collaboration frameworks, and develops new language-native architectures. Home of WVY and wvy.world." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starpower</title>
+  <style>
+    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}.space{position:relative;width:100%;height:100%;background:#000}.star-field{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.brand{position:absolute;left:30px;bottom:26px;z-index:100;font-size:13px;letter-spacing:.42em}.discord-link{position:absolute;right:30px;bottom:24px;z-index:100;display:grid;width:40px;height:40px;place-items:center;color:#fff;background:transparent;text-decoration:none;transition:transform .2s,color .2s,filter .2s}.discord-link svg{width:29px;height:29px;fill:currentColor}.discord-link:hover{color:#5865f2;transform:scale(1.12);filter:drop-shadow(0 0 10px rgba(88,101,242,.75))}.discord-link:focus-visible{outline:2px solid #5865f2;outline-offset:4px;border-radius:7px}.core{position:absolute;left:50%;top:50%;width:clamp(210px,23vw,350px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:50;display:grid;place-items:center;pointer-events:none}.core:before{content:"";position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),rgba(255,255,255,.07) 30%,transparent 66%);filter:blur(22px)}.core img{position:relative;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 32px rgba(255,255,255,.75))}.orbit{position:absolute;left:50%;top:50%;width:0;height:0}.planet-link{position:absolute;left:0;top:0;display:grid;justify-items:center;gap:7px;color:#fff;text-decoration:none;will-change:transform,opacity;transform-origin:center}.planet-link img{width:clamp(70px,7.8vw,120px);aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 0 15px rgba(255,255,255,.28));transition:filter .25s}.planet-link span{font-size:clamp(8px,.72vw,11px);letter-spacing:.18em;text-transform:uppercase;text-align:center;text-shadow:0 2px 10px #000;white-space:nowrap}.planet-link:hover img{filter:drop-shadow(0 0 25px rgba(255,255,255,.78))}@media(max-width:650px){.core{width:180px}.planet-link img{width:58px}.planet-link span{font-size:7px;max-width:75px;white-space:normal}.brand{left:18px;bottom:18px}.discord-link{right:18px;bottom:16px}}
+  </style>
 </head>
-<body>
-
-  <!-- starfield -->
-  <canvas id="stars"></canvas>
-
-  <!-- everything that blurs when the star goes 0G -->
-  <div id="world">
-
-    <!-- ======= NAV ======= -->
-    <header class="nav-wrap">
-      <nav class="nav">
-        <a href="index.html" class="logo">
-          <img class="logo-star" src="assets/logo.png" alt="" />
-          <span class="logo-text">Starpower<span class="logo-dim">.Technology</span></span>
-        </a>
-        <div class="nav-links">
-          <a href="#mission">Research</a>
-          <a href="docs/index.html">DevTools</a>
-          <a href="docs/superwvy.html">Architectures</a>
-          <a href="/studio">Studio</a>
-          <a href="#app">App</a>
-        </div>
-        <div class="nav-right">
-          <button class="kbd-hint" id="paletteHint" title="Command palette">⌘K</button>
-          <a href="wvyworld/" class="btn btn-primary">wvy.world <span class="arrow">→</span></a>
-        </div>
-        <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-      </nav>
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#mission">Research</a>
-        <a href="docs/index.html">DevTools</a>
-        <a href="docs/superwvy.html">Architectures</a>
-        <a href="/studio">Studio</a>
-        <a href="#app">App</a>
-        <a href="wvyworld/" class="btn btn-primary">wvy.world →</a>
-      </div>
-    </header>
-
-    <!-- ======= HERO ======= -->
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-left">
-          <div class="badge"><span class="badge-dot"></span><span class="mono">SYSTEM ONLINE — WVY models are live</span></div>
-          <h1 class="hero-title">
-            <span class="hero-line">Starpower</span>
-            <span class="hero-line dim">.Technology</span>
-          </h1>
-          <p class="hero-sub" id="heroSub"></p>
-          <div class="hero-actions">
-            <a href="https://www.kaggle.com/code/starpowertechnology/wvy-1-7-1-5m/edit" class="btn btn-primary btn-lg">Open WVY 1.7 1.5M <span class="arrow">→</span></a>
-            <a href="https://huggingface.co/StarpowerTechnology/BbyWVY-360m" class="btn btn-ghost btn-lg">BbyWVY 360M <span class="arrow">→</span></a>
-            <a href="wvyworld/" class="btn btn-primary btn-lg">Enter wvy.world <span class="arrow">→</span></a>
-            <a href="docs/index.html" class="btn btn-ghost btn-lg mono">$ open docs</a>
-          </div>
-          <p class="hero-hint mono">// grab the star. throw it. talk to it.</p>
-        </div>
-
-        <div class="hero-right">
-          <div class="terminal" id="terminal">
-            <div class="terminal-bar">
-              <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
-              <span class="terminal-title">starpower — training console</span>
-              <span class="terminal-live mono"><span class="badge-dot"></span>live</span>
-            </div>
-            <pre class="terminal-body" id="termBody"><code id="termCode"></code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-cue mono">scroll<span class="cue-bar"></span></div>
-    </section>
-
-    <!-- ======= MISSION / AIMS ======= -->
-    <section class="mission" id="mission">
-      <div class="mission-head">
-        <span class="eyebrow mono">// what we're building</span>
-        <h2 class="stream-title" data-stream="Research agenda."></h2>
-      </div>
-      <ol class="aims">
-        <li class="aim">
-          <span class="aim-num mono">01</span>
-          <div class="aim-body">
-            <h3>Groupchat-native language models</h3>
-            <p>Training models for many humans and many agents in one room: turn-taking, thread tracking, disagreement, collaboration, and multi-perspective reasoning under pressure.</p>
-          </div>
-          <span class="aim-status mono">ACTIVE</span>
-        </li>
-        <li class="aim">
-          <span class="aim-num mono">02</span>
-          <div class="aim-body">
-            <h3>Complex reasoning from human experts</h3>
-            <p>Building datasets with real researchers and domain experts — capturing how they actually think, then training models on those reasoning patterns.</p>
-          </div>
-          <span class="aim-status mono">ACTIVE</span>
-        </li>
-        <li class="aim">
-          <span class="aim-num mono">03</span>
-          <div class="aim-body">
-            <h3>Small, powerful models</h3>
-            <p>4B–100B parameters. We start small and train for efficiency: polished datasets, stronger reasoning loops, and models that use information to solve problems instead of only memorizing scale.</p>
-          </div>
-          <span class="aim-status mono">ACTIVE</span>
-        </li>
-        <li class="aim">
-          <span class="aim-num mono">04</span>
-          <div class="aim-body">
-            <h3>Open weights &amp; new architectures</h3>
-            <p>Open-weight releases plus ground-up architecture research: language-native tokenization, hierarchical meaning units, and SuperWVY / Savvy systems in active development.</p>
-          </div>
-          <span class="aim-status mono">R&amp;D</span>
-        </li>
-        <li class="aim">
-          <span class="aim-num mono">05</span>
-          <div class="aim-body">
-            <h3>Autonomous frameworks</h3>
-            <p>Starpower Autonomy — frameworks for agents that run their own research loops: YouTube Researcher, Autonomous Researcher, and beyond.</p>
-          </div>
-          <span class="aim-status mono">SHIPPING</span>
-        </li>
-        <li class="aim">
-          <span class="aim-num mono">06</span>
-          <div class="aim-body">
-            <h3>WVY for iPhone</h3>
-            <p>The multi-agent reasoning room in your pocket. Same collaboration loop, same agents, native on iOS.</p>
-          </div>
-          <span class="aim-status mono glow-status">COMING SOON</span>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ======= DEVTOOLS + ARCHITECTURES INDEX ======= -->
-    <section class="catalog" id="devtools">
-      <div class="catalog-col">
-        <span class="eyebrow mono">// devtools — open source</span>
-        <h2 class="stream-title" data-stream="Built in the open."></h2>
-        <div class="index-list">
-          <a class="index-row" href="docs/wvy-opensource.html">
-            <span class="row-name">WVY OpenSource</span>
-            <span class="row-desc">Swift macOS app for autonomous multi-agent rooms — agents reason, pause, wake, and continue on their own</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/starpower-autonomy.html">
-            <span class="row-name">Starpower Autonomy</span>
-            <span class="row-desc">The production runtime — isolated agent minds with repo memory, tools, and independent perspectives</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/voice-agents.html">
-            <span class="row-name">Voice Agents</span>
-            <span class="row-desc">Hands-free voice orchestration — talk, and backend agents search &amp; write for you</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/youtube-researcher.html">
-            <span class="row-name">YouTube Researcher</span>
-            <span class="row-desc">Searches YouTube on its own, transcribes with Whisper, answers from what it watched</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/autonomous-researcher.html">
-            <span class="row-name">Autonomous Researcher</span>
-            <span class="row-desc">A self-directed agent with tools, mental notes &amp; a reflection loop</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/simple-groupchat.html">
-            <span class="row-name">Simple Groupchat</span>
-            <span class="row-desc">Two agents sharing a room, challenging each other, and working through tasks from different perspectives</span>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="catalog-col" id="architectures">
-        <span class="eyebrow mono">// architectures — r&amp;d</span>
-        <h2 class="stream-title" data-stream="New ways to think."></h2>
-        <div class="index-list">
-          <a class="index-row" href="docs/superwvy.html">
-            <span class="row-name">SuperWVY <span class="tag mono">in development</span></span>
-            <span class="row-desc">Language-native architecture research: letters, morphemes, words, hierarchy, and symbolic / neural structure</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/savvy.html">
-            <span class="row-name">Savvy <span class="tag mono">in development</span></span>
-            <span class="row-desc">Research-oriented architecture trained on expert thinking patterns, information use, and reflection</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="docs/wvy-custom-models.html">
-            <span class="row-name">WVY 1.7 1.5M <span class="tag mono">on Kaggle</span></span>
-            <span class="row-desc">The first public WVY small-model drop — built to push efficient reasoning from the bottom up</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="https://huggingface.co/StarpowerTechnology/BbyWVY-360m">
-            <span class="row-name">BbyWVY 360M <span class="tag mono">Hugging Face</span></span>
-            <span class="row-desc">A 360M WVY-family model release hosted on Hugging Face for open model access</span>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= STARPOWER STUDIO ======= -->
-    <section class="world" id="studio">
-      <div class="world-grid">
-        <div class="world-copy">
-          <span class="eyebrow mono">// build datasets</span>
-          <h2 class="stream-title" data-stream="Starpower Studio."></h2>
-          <p class="section-sub">Create SFT datasets right in the browser. A chat-style editor for user / assistant / system turns, one-click JSONL export, cloud save, and public sharing — the same training format we build WVY on.</p>
-          <a href="/studio" class="btn btn-primary btn-lg">Open Studio <span class="arrow">→</span></a>
-        </div>
-        <div class="index-list">
-          <a class="index-row" href="/studio">
-            <span class="row-name">Dataset Editor</span>
-            <span class="row-desc">Add, reorder, and edit conversation turns by role — then export clean JSONL</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="/studio">
-            <span class="row-name">Cloud projects</span>
-            <span class="row-desc">Sign in to autosave your datasets and pick up right where you left off</span>
-            <span class="arrow">→</span>
-          </a>
-          <a class="index-row" href="/studio">
-            <span class="row-name">Public datasets</span>
-            <span class="row-desc">Publish your set or browse community datasets to build from</span>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= WVY APP ======= -->
-    <section class="app-section" id="app">
-      <div class="app-grid">
-        <div class="app-copy">
-          <span class="eyebrow mono">// coming soon</span>
-          <h2 class="stream-title" data-stream="WVY for iPhone."></h2>
-          <p class="section-sub">The multi-agent collaboration room, native on iOS. Spin up agents with different roles and perspectives, then let them reason with you and with each other in real time.</p>
-          <div class="app-meta mono">
-            <span><span class="badge-dot"></span> in development</span>
-            <span>TestFlight soon</span>
-          </div>
-        </div>
-        <div class="app-phones">
-          <div class="phone">
-            <div class="phone-notch"></div>
-            <img src="assets/wvy-app-1.png" alt="WVY app screenshot" onerror="this.parentElement.classList.add('placeholder'); this.remove()" />
-            <div class="phone-fallback mono">screenshot<br/>slot 01</div>
-          </div>
-          <div class="phone phone-back">
-            <div class="phone-notch"></div>
-            <img src="assets/wvy-app-2.png" alt="WVY app screenshot" onerror="this.parentElement.classList.add('placeholder'); this.remove()" />
-            <div class="phone-fallback mono">screenshot<br/>slot 02</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= WVY.WORLD ======= -->
-    <section class="world" id="world-section">
-      <div class="world-grid">
-        <div class="world-copy">
-          <span class="eyebrow mono">// live now</span>
-          <h2 class="stream-title" data-stream="wvy.world"></h2>
-          <p class="section-sub">The multi-agent collaboration room running on WVY. Humans and agents share one space, challenge each other's assumptions, split work in parallel, and bring multiple perspectives to complex reasoning.</p>
-          <a href="wvyworld/" class="btn btn-primary btn-lg">Enter wvy.world <span class="arrow">→</span></a>
-        </div>
-        <div class="chat-sim" id="chatSim">
-          <div class="chat-sim-head">
-            <span class="mono">#the-room</span>
-            <span class="chat-live mono"><span class="badge-dot"></span><span id="chatCount">4</span> online</span>
-          </div>
-          <div class="chat-sim-body" id="chatSimBody"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= FOOTER ======= -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <img class="logo-star big" src="assets/logo.png" alt="" />
-          <div>
-            <strong>Starpower Technology</strong>
-            <p class="mono">training models · building agents · reasoning together</p>
-          </div>
-        </div>
-        <div class="footer-cols">
-          <div class="footer-col">
-            <h5 class="mono">devtools</h5>
-            <a href="docs/wvy-opensource.html">WVY OpenSource</a>
-            <a href="docs/starpower-autonomy.html">Starpower Autonomy</a>
-            <a href="docs/simple-groupchat.html">Simple Groupchat</a>
-          </div>
-          <div class="footer-col">
-            <h5 class="mono">architectures</h5>
-            <a href="docs/superwvy.html">SuperWVY</a>
-            <a href="docs/savvy.html">Savvy</a>
-            <a href="docs/wvy-custom-models.html">Custom Models</a>
-          </div>
-          <div class="footer-col">
-            <h5 class="mono">world</h5>
-            <a href="wvyworld/">wvy.world</a>
-            <a href="/studio">Starpower Studio</a>
-            <a href="#app">WVY for iPhone</a>
-            <a href="mailto:hello@starpower.technology">Contact</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom mono">
-        <span>© 2026 Starpower Technology</span>
-        <span>starpower.technology</span>
-      </div>
-    </footer>
-
-  </div><!-- /#world -->
-
-  <!-- ======= THE STAR (mascot — lives outside #world so it never blurs) ======= -->
-  <div id="mascot" aria-label="WVY star — click to chat, drag to throw">
-    <div class="mascot-inner">
-      <img src="assets/logo-blank.png" alt="" draggable="false" />
-      <svg viewBox="0 0 100 100" class="mascot-eyes">
-        <ellipse class="star-eye eye-l" cx="44.3" cy="45.1" rx="1.5" ry="4.4" fill="#000"/>
-        <ellipse class="star-eye eye-r" cx="50" cy="45.3" rx="1.5" ry="4.4" fill="#000"/>
-      </svg>
-    </div>
-  </div>
-
-  <!-- experience mode (blurred / 0G) layer -->
-  <div id="warpCatcher" class="warp-catcher"></div>
-  <div id="starBubble" class="star-bubble hidden">
-    <span class="sb-text"></span>
-  </div>
-  <div id="expBar" class="exp-bar">
-    <form id="expForm" class="exp-form">
-      <span class="mono prompt-mark">›</span>
-      <input id="expInput" type="text" placeholder="talk to WVY…" autocomplete="off" />
-      <button type="submit" class="exp-send mono">send ↑</button>
-    </form>
-    <div class="exp-hint mono">your messages float away · everything's saved · click out to read the log</div>
-  </div>
-
-  <!-- saved chat log popup -->
-  <div id="starChat" class="star-chat hidden">
-    <div class="star-chat-head">
-      <span class="mono chat-head-title">★ wvy assistant</span>
-      <div class="chat-tabs mono" aria-label="Chat views">
-        <button id="starChatTab" class="chat-tab active" type="button">chat</button>
-        <button id="starChatListTab" class="chat-tab" type="button">chats</button>
-      </div>
-      <button id="starChatClose" class="chat-x mono">esc</button>
-    </div>
-    <div class="star-chat-log" id="starChatLog"></div>
-    <div class="star-chat-list hidden" id="starChatList"></div>
-    <form id="starChatForm" class="star-chat-form">
-      <span class="mono prompt-mark">›</span>
-      <input id="starChatInput" type="text" placeholder="ask me about WVY..." autocomplete="off" />
-    </form>
-  </div>
-
-  <!-- ⌘K palette -->
-  <div id="palette" class="palette hidden">
-    <div class="palette-box">
-      <div class="palette-input-row">
-        <span class="mono prompt-mark">›</span>
-        <input id="paletteInput" type="text" placeholder="type a command or search..." autocomplete="off" />
-        <span class="mono kbd">esc</span>
-      </div>
-      <div class="palette-results" id="paletteResults"></div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script src="js/stars.js"></script>
-  <script src="js/palette.js"></script>
-  <script src="wvy-website-agent/wvy-chats.js"></script>
-  <script src="wvy-website-agent/wvy-client.js"></script>
-  <script src="js/mascot.js"></script>
-  <script src="js/home.js"></script>
-</body>
-</html>
+<body><main class="space"><canvas class="star-field" aria-hidden="true"></canvas><div class="core"><img src="SuperStarpowerLogo.png" alt="Starpower logo"></div>
+  <div class="orbit" data-lane="1" data-x="19" data-y="5" data-speed="22" data-phase="0"><a class="planet-link" href="models.html"><img src="planet-assets/models-planet.png" alt=""><span>Models</span></a></div>
+  <div class="orbit" data-lane="2" data-x="24" data-y="6" data-speed="42" data-phase="2.1"><a class="planet-link" href="human-data-center.html"><img src="planet-assets/human-data-center-planet.png" alt=""><span>Human Data Center</span></a></div>
+  <div class="orbit" data-lane="3" data-x="29" data-y="7" data-speed="28" data-phase="4.2"><a class="planet-link" href="roadmap.html"><img src="planet-assets/roadmap-planet.png" alt=""><span>Roadmap</span></a></div>
+  <div class="orbit" data-lane="4" data-x="34" data-y="8" data-speed="70" data-phase="1.05"><a class="planet-link" href="sculpting.html"><img src="planet-assets/sculpting-planet.png" alt=""><span>WVY World</span></a></div>
+  <div class="orbit" data-lane="6" data-x="44" data-y="10" data-speed="112" data-phase="5.25"><a class="planet-link" href="research.html"><img src="planet-assets/research-planet.png" alt=""><span>Research</span></a></div>
+  <div class="brand">STARPOWER</div><a class="discord-link" href="https://discord.gg/W3uBt5Cz" target="_blank" rel="noopener noreferrer" aria-label="Join Starpower on Discord"><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M20.317 4.3698A19.7913 19.7913 0 0 0 15.885 3c-.191.342-.403.801-.553 1.165a18.27 18.27 0 0 0-5.565 0A12.64 12.64 0 0 0 9.2 3a19.736 19.736 0 0 0-4.435 1.373C1.962 8.563 1.203 12.646 1.583 16.67a19.9 19.9 0 0 0 5.437 2.728 13.88 13.88 0 0 0 1.315-2.144 12.93 12.93 0 0 1-2.067-.994c.174-.127.344-.258.508-.392 3.986 1.85 8.31 1.85 12.25 0 .166.136.336.267.508.392-.655.385-1.35.719-2.07.996.381.756.823 1.48 1.315 2.143a19.84 19.84 0 0 0 5.44-2.73c.447-4.666-.76-8.71-3.902-12.3ZM8.02 14.26c-1.196 0-2.176-1.1-2.176-2.448 0-1.348.96-2.45 2.176-2.45 1.217 0 2.197 1.102 2.176 2.45 0 1.348-.96 2.448-2.176 2.448Zm7.962 0c-1.196 0-2.176-1.1-2.176-2.448 0-1.348.96-2.45 2.176-2.45 1.217 0 2.197 1.102 2.176 2.45 0 1.348-.959 2.448-2.176 2.448Z"/></svg></a></main><script>
+  const starCanvas=document.querySelector('.star-field');
+  const starContext=starCanvas.getContext('2d',{alpha:false});
+  let stars=[];
+  let starWidth=0;
+  let starHeight=0;
+  let lastStarFrame=0;
+  function createStar(){
+    const depth=.25+Math.random()*.75;
+    return{x:Math.random()*starWidth,y:Math.random()*starHeight,depth,size:.35+depth*1.35,brightness:.3+Math.random()*.7,twinkle:Math.random()*Math.PI*2};
+  }
+  function sizeStarField(){
+    starWidth=innerWidth;
+    starHeight=innerHeight;
+    const pixelRatio=Math.min(devicePixelRatio||1,2);
+    starCanvas.width=Math.round(starWidth*pixelRatio);
+    starCanvas.height=Math.round(starHeight*pixelRatio);
+    starCanvas.style.width=`${starWidth}px`;
+    starCanvas.style.height=`${starHeight}px`;
+    starContext.setTransform(pixelRatio,0,0,pixelRatio,0,0);
+    const starCount=Math.min(360,Math.max(120,Math.round(starWidth*starHeight/6200)));
+    stars=Array.from({length:starCount},createStar);
+  }
+  function drawStarField(time){
+    const elapsed=Math.min(40,time-lastStarFrame||16);
+    lastStarFrame=time;
+    starContext.fillStyle='#000';
+    starContext.fillRect(0,0,starWidth,starHeight);
+    stars.forEach(star=>{
+      if(!reduced){
+        star.x+=elapsed*(.006+star.depth*.018);
+        star.y+=elapsed*(.001+star.depth*.004);
+        star.twinkle+=elapsed*.0015;
+      }
+      if(star.x>starWidth+3)star.x=-3;
+      if(star.y>starHeight+3)star.y=-3;
+      const pulse=.72+Math.sin(star.twinkle)*.28;
+      const alpha=Math.min(1,star.brightness*pulse*(.45+star.depth*.65));
+      starContext.fillStyle=`rgba(255,255,255,${alpha})`;
+      starContext.beginPath();
+      starContext.arc(Math.round(star.x),Math.round(star.y),star.size,0,Math.PI*2);
+      starContext.fill();
+      if(star.depth>.88&&star.brightness>.78){
+        starContext.fillStyle=`rgba(180,210,255,${alpha*.2})`;
+        starContext.fillRect(Math.round(star.x-star.size*3),Math.round(star.y),star.size*6,1);
+      }
+    });
+    if(!reduced)requestAnimationFrame(drawStarField);
+  }
+  const orbits=[...document.querySelectorAll('.orbit')];
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function movePlanets(time){
+    const width=innerWidth,height=innerHeight;
+    orbits.forEach((orbit,index)=>{
+      const link=orbit.firstElementChild;
+      const speed=Number(orbit.dataset.speed)*1000;
+      const angle=Number(orbit.dataset.phase)+(reduced?0:time/speed*Math.PI*2);
+      const ellipseX=Number(orbit.dataset.x)*width/100;
+      const ellipseY=Number(orbit.dataset.y)*height/100;
+      const rawX=Math.cos(angle)*ellipseX;
+      const rawY=Math.sin(angle)*ellipseY;
+      const x=rawX;
+      const y=rawY;
+      const depth=Math.sin(angle);
+      const lane=Number(orbit.dataset.lane);
+      const scale=.82+(depth+1)*.15;
+      orbit.style.zIndex=String(depth<0?50-lane:50+lane);
+      link.style.opacity='1';
+      link.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) scale(${scale})`;
+    });
+    if(!reduced)requestAnimationFrame(movePlanets);
+  }
+  addEventListener('resize',sizeStarField,{passive:true});
+  sizeStarField();
+  requestAnimationFrame(drawStarField);
+  requestAnimationFrame(movePlanets);
+  </script></body></html>
