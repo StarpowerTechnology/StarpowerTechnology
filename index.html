@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Starpower</title>
   <style>
-    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}.space{position:relative;width:100%;height:100%;background:#000}.star-field{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.brand{position:absolute;left:30px;bottom:26px;z-index:100;font-size:13px;letter-spacing:.42em}.discord-link{position:absolute;right:30px;bottom:24px;z-index:100;display:grid;width:40px;height:40px;place-items:center;color:#fff;background:transparent;text-decoration:none;transition:transform .2s,color .2s,filter .2s}.discord-link svg{width:29px;height:29px;fill:currentColor}.discord-link:hover{color:#5865f2;transform:scale(1.12);filter:drop-shadow(0 0 10px rgba(88,101,242,.75))}.discord-link:focus-visible{outline:2px solid #5865f2;outline-offset:4px;border-radius:7px}.core{position:absolute;left:50%;top:50%;width:clamp(210px,23vw,350px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:50;display:grid;place-items:center;pointer-events:none}.core:before{content:"";position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),rgba(255,255,255,.07) 30%,transparent 66%);filter:blur(22px)}.core img{position:relative;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 32px rgba(255,255,255,.75))}.orbit{position:absolute;left:50%;top:50%;width:0;height:0}.planet-link{position:absolute;left:0;top:0;display:grid;justify-items:center;gap:7px;color:#fff;text-decoration:none;will-change:transform,opacity;transform-origin:center}.planet-link img{width:clamp(70px,7.8vw,120px);aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 0 15px rgba(255,255,255,.28));transition:filter .25s}.planet-link span{font-size:clamp(8px,.72vw,11px);letter-spacing:.18em;text-transform:uppercase;text-align:center;text-shadow:0 2px 10px #000;white-space:nowrap}.planet-link:hover img{filter:drop-shadow(0 0 25px rgba(255,255,255,.78))}@media(max-width:650px){.core{width:180px}.planet-link img{width:58px}.planet-link span{font-size:7px;max-width:75px;white-space:normal}.brand{left:18px;bottom:18px}.discord-link{right:18px;bottom:16px}}
+    *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}.space{position:relative;width:100%;height:100%;background:#000}.star-field{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}.brand{position:absolute;left:30px;bottom:26px;z-index:100;font-size:13px;letter-spacing:.42em}.discord-link{position:absolute;right:30px;bottom:24px;z-index:100;display:grid;width:40px;height:40px;place-items:center;color:#fff;background:transparent;text-decoration:none;transition:transform .2s,color .2s,filter .2s}.discord-link svg{width:29px;height:29px;fill:currentColor}.discord-link:hover{color:#5865f2;transform:scale(1.12);filter:drop-shadow(0 0 10px rgba(88,101,242,.75))}.discord-link:focus-visible{outline:2px solid #5865f2;outline-offset:4px;border-radius:7px}.core{position:absolute;left:50%;top:50%;width:clamp(210px,23vw,350px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:50;display:grid;place-items:center;pointer-events:none}.core:before{content:"";position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),rgba(255,255,255,.07) 30%,transparent 66%);filter:blur(22px)}.core img{position:relative;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 32px rgba(255,255,255,.75))}.orbit{position:absolute;left:50%;top:50%;width:0;height:0}.planet-link{position:absolute;left:0;top:0;display:grid;justify-items:center;gap:7px;color:#fff;text-decoration:none;will-change:transform,opacity;transform-origin:center}.planet-link img{width:clamp(70px,7.8vw,120px);aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 0 15px rgba(255,255,255,.28));transition:filter .25s}.planet-link span{font-size:clamp(8px,.72vw,11px);letter-spacing:.18em;text-transform:uppercase;text-align:center;text-shadow:0 2px 10px #000;white-space:nowrap}.planet-link:hover img{filter:drop-shadow(0 0 25px rgba(255,255,255,.78))}@media(max-width:650px){.core{width:150px}.core:before{inset:-22%;filter:blur(14px);background:radial-gradient(circle,rgba(255,255,255,.2),rgba(255,255,255,.05) 34%,transparent 68%)}.core img{filter:none}.planet-link{gap:5px}.planet-link img,.planet-link:hover img{width:56px;filter:none}.planet-link span{font-size:7px;line-height:1.35;max-width:68px;white-space:normal}.brand{left:18px;bottom:18px}.discord-link{right:18px;bottom:16px}}
   </style>
 </head>
-<body><main class="space"><canvas class="star-field" aria-hidden="true"></canvas><div class="core"><img src="SuperStarpowerLogo.png" alt="Starpower logo"></div>
-  <div class="orbit" data-lane="1" data-x="19" data-y="5" data-speed="22" data-phase="0"><a class="planet-link" href="models.html"><img src="planet-assets/models-planet.png" alt=""><span>Models</span></a></div>
-  <div class="orbit" data-lane="2" data-x="24" data-y="6" data-speed="42" data-phase="2.1"><a class="planet-link" href="human-data-center.html"><img src="planet-assets/human-data-center-planet.png" alt=""><span>Human Data Center</span></a></div>
-  <div class="orbit" data-lane="3" data-x="29" data-y="7" data-speed="28" data-phase="4.2"><a class="planet-link" href="roadmap.html"><img src="planet-assets/roadmap-planet.png" alt=""><span>Roadmap</span></a></div>
-  <div class="orbit" data-lane="4" data-x="34" data-y="8" data-speed="70" data-phase="1.05"><a class="planet-link" href="sculpting.html"><img src="planet-assets/sculpting-planet.png" alt=""><span>WVY World</span></a></div>
-  <div class="orbit" data-lane="6" data-x="44" data-y="10" data-speed="112" data-phase="5.25"><a class="planet-link" href="research.html"><img src="planet-assets/research-planet.png" alt=""><span>Research</span></a></div>
+<body><main class="space"><canvas class="star-field" aria-hidden="true"></canvas><div class="core"><img src="SuperStarpowerLogo.png" alt="Starpower logo" fetchpriority="high" decoding="async"></div>
+  <div class="orbit" data-lane="1" data-x="19" data-y="5" data-speed="22" data-phase="0"><a class="planet-link" href="models.html"><img src="planet-assets/models-planet.png" alt="" decoding="async"><span>Models</span></a></div>
+  <div class="orbit" data-lane="2" data-x="24" data-y="6" data-speed="42" data-phase="2.1"><a class="planet-link" href="human-data-center.html"><img src="planet-assets/human-data-center-planet.png" alt="" decoding="async"><span>Human Data Center</span></a></div>
+  <div class="orbit" data-lane="3" data-x="29" data-y="7" data-speed="28" data-phase="4.2"><a class="planet-link" href="roadmap.html"><img src="planet-assets/roadmap-planet.png" alt="" decoding="async"><span>Roadmap</span></a></div>
+  <div class="orbit" data-lane="4" data-x="34" data-y="8" data-speed="70" data-phase="1.05"><a class="planet-link" href="sculpting.html"><img src="planet-assets/sculpting-planet.png" alt="" decoding="async"><span>WVY World</span></a></div>
+  <div class="orbit" data-lane="6" data-x="44" data-y="10" data-speed="112" data-phase="5.25"><a class="planet-link" href="research.html"><img src="planet-assets/research-planet.png" alt="" decoding="async"><span>Research</span></a></div>
   <div class="brand">STARPOWER</div><a class="discord-link" href="https://discord.gg/W3uBt5Cz" target="_blank" rel="noopener noreferrer" aria-label="Join Starpower on Discord"><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M20.317 4.3698A19.7913 19.7913 0 0 0 15.885 3c-.191.342-.403.801-.553 1.165a18.27 18.27 0 0 0-5.565 0A12.64 12.64 0 0 0 9.2 3a19.736 19.736 0 0 0-4.435 1.373C1.962 8.563 1.203 12.646 1.583 16.67a19.9 19.9 0 0 0 5.437 2.728 13.88 13.88 0 0 0 1.315-2.144 12.93 12.93 0 0 1-2.067-.994c.174-.127.344-.258.508-.392 3.986 1.85 8.31 1.85 12.25 0 .166.136.336.267.508.392-.655.385-1.35.719-2.07.996.381.756.823 1.48 1.315 2.143a19.84 19.84 0 0 0 5.44-2.73c.447-4.666-.76-8.71-3.902-12.3ZM8.02 14.26c-1.196 0-2.176-1.1-2.176-2.448 0-1.348.96-2.45 2.176-2.45 1.217 0 2.197 1.102 2.176 2.45 0 1.348-.96 2.448-2.176 2.448Zm7.962 0c-1.196 0-2.176-1.1-2.176-2.448 0-1.348.96-2.45 2.176-2.45 1.217 0 2.197 1.102 2.176 2.45 0 1.348-.959 2.448-2.176 2.448Z"/></svg></a></main><script>
   const starCanvas=document.querySelector('.star-field');
   const starContext=starCanvas.getContext('2d',{alpha:false});
@@ -28,13 +28,14 @@
   function sizeStarField(){
     starWidth=innerWidth;
     starHeight=innerHeight;
-    const pixelRatio=Math.min(devicePixelRatio||1,2);
+    const compact=starWidth<=650;
+    const pixelRatio=Math.min(devicePixelRatio||1,compact?1.25:2);
     starCanvas.width=Math.round(starWidth*pixelRatio);
     starCanvas.height=Math.round(starHeight*pixelRatio);
     starCanvas.style.width=`${starWidth}px`;
     starCanvas.style.height=`${starHeight}px`;
     starContext.setTransform(pixelRatio,0,0,pixelRatio,0,0);
-    const starCount=Math.min(360,Math.max(120,Math.round(starWidth*starHeight/6200)));
+    const starCount=compact?100:Math.min(360,Math.max(120,Math.round(starWidth*starHeight/6200)));
     stars=Array.from({length:starCount},createStar);
   }
   function drawStarField(time){
@@ -61,7 +62,7 @@
         starContext.fillRect(Math.round(star.x-star.size*3),Math.round(star.y),star.size*6,1);
       }
     });
-    if(!reduced)requestAnimationFrame(drawStarField);
+    if(!reduced&&starWidth>650)requestAnimationFrame(drawStarField);
   }
   const orbits=[...document.querySelectorAll('.orbit')];
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -71,8 +72,9 @@
       const link=orbit.firstElementChild;
       const speed=Number(orbit.dataset.speed)*1000;
       const angle=Number(orbit.dataset.phase)+(reduced?0:time/speed*Math.PI*2);
-      const ellipseX=Number(orbit.dataset.x)*width/100;
-      const ellipseY=Number(orbit.dataset.y)*height/100;
+      const compact=width<=650;
+      const ellipseX=Number(orbit.dataset.x)*width/100*(compact?.86:1);
+      const ellipseY=Number(orbit.dataset.y)*height/100*(compact?2.35:1);
       const rawX=Math.cos(angle)*ellipseX;
       const rawY=Math.sin(angle)*ellipseY;
       const x=rawX;
