@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "pages": {
+    "models": { "sections": [] },
+    "arxiv-wvy-base": { "sections": [] },
+    "human-data-center": { "sections": [] },
+    "roadmap": { "sections": [] },
+    "sculpting": { "sections": [] },
+    "future-vision": { "sections": [] },
+    "research": { "sections": [] }
+  },
+  "researchArticles": []
+}

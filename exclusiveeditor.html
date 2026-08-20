@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Content Editor — Starpower</title>
+  <link rel="stylesheet" href="admin-assets/exclusive-editor.css">
+  <script src="admin-assets/exclusive-editor.js" defer></script>
+</head>
+<body>
+  <main class="editor-shell">
+    <header class="editor-header">
+      <a href="index.html">STARPOWER</a>
+      <div><span data-session-user></span><button type="button" data-logout>LOG OUT</button></div>
+    </header>
+    <section class="editor-hero">
+      <p>PRIVATE CONTENT SYSTEM</p>
+      <h1>Website Editor</h1>
+      <p class="editor-intro">Create page sections and publish research articles. Every publish is saved to GitHub and redeployed by Vercel.</p>
+      <p class="publish-status" data-publish-status role="status" aria-live="polite"></p>
+    </section>
+    <nav class="editor-tabs" aria-label="Editor sections">
+      <button type="button" class="is-active" data-editor-tab="sections">PAGE SECTIONS</button>
+      <button type="button" data-editor-tab="research">RESEARCH ARTICLES</button>
+    </nav>
+
+    <section class="editor-panel is-active" data-editor-panel="sections">
+      <div class="editor-grid">
+        <form class="content-form" data-section-form>
+          <div class="form-heading"><p>PAGE CONTENT</p><h2 data-section-form-title>Create a section</h2></div>
+          <input type="hidden" name="id">
+          <label for="section-page">Page</label>
+          <select id="section-page" name="page" required>
+            <option value="models">Models</option>
+            <option value="arxiv-wvy-base">arXiv-WVY-base</option>
+            <option value="human-data-center">Human Data Center</option>
+            <option value="roadmap">Roadmap</option>
+            <option value="sculpting">WVY World</option>
+            <option value="future-vision">Future Vision</option>
+            <option value="research">Research</option>
+          </select>
+          <label for="section-title">Section title</label>
+          <input id="section-title" name="title" type="text" required maxlength="140">
+          <label for="section-subtitle">Subtitle <span>optional</span></label>
+          <input id="section-subtitle" name="subtitle" type="text" maxlength="240">
+          <label for="section-body">Section text</label>
+          <textarea id="section-body" name="body" required maxlength="20000" rows="12" placeholder="Use a blank line between paragraphs."></textarea>
+          <div class="form-actions"><button class="primary-button" type="submit">PUBLISH SECTION</button><button class="secondary-button" type="button" data-cancel-section hidden>CANCEL EDIT</button></div>
+          <p class="form-message" data-section-message aria-live="polite"></p>
+        </form>
+        <div class="content-list-shell"><div class="form-heading"><p>PUBLISHED</p><h2>Page sections</h2></div><div class="content-list" data-section-list></div></div>
+      </div>
+    </section>
+
+    <section class="editor-panel" data-editor-panel="research">
+      <div class="editor-grid">
+        <form class="content-form" data-article-form>
+          <div class="form-heading"><p>RESEARCH</p><h2 data-article-form-title>Create an article</h2></div>
+          <input type="hidden" name="id">
+          <label for="article-title">Title</label>
+          <input id="article-title" name="title" type="text" required maxlength="160">
+          <label for="article-subtitle">Subtitle</label>
+          <input id="article-subtitle" name="subtitle" type="text" required maxlength="280">
+          <label for="article-date">Date</label>
+          <input id="article-date" name="date" type="date" required>
+          <label for="article-image">Cover image <span data-image-requirement>PNG, JPG or WebP · maximum 3 MB</span></label>
+          <input id="article-image" name="image" type="file" accept="image/png,image/jpeg,image/webp">
+          <label for="article-body">Article</label>
+          <textarea id="article-body" name="body" required maxlength="80000" rows="20" placeholder="Use a blank line between paragraphs."></textarea>
+          <div class="form-actions"><button class="primary-button" type="submit">PUBLISH ARTICLE</button><button class="secondary-button" type="button" data-cancel-article hidden>CANCEL EDIT</button></div>
+          <p class="form-message" data-article-message aria-live="polite"></p>
+        </form>
+        <div class="content-list-shell"><div class="form-heading"><p>PUBLISHED</p><h2>Research articles</h2></div><div class="content-list" data-article-list></div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
